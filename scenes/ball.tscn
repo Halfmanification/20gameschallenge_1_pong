@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4y56mugb0pp3"]
 
-[ext_resource type="Script" path="res://scenes/ball.gd" id="1_8plan"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_8plan"]
 [ext_resource type="Texture2D" uid="uid://tatbsfl2ngx3" path="res://art/ping pong ball.png" id="1_ocnw6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ocwgq"]
