@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cenunx0xej4uh"]
+[gd_scene load_steps=5 format=3 uid="uid://cenunx0xej4uh"]
+
+[ext_resource type="PackedScene" uid="uid://dpsk0nl5koyb0" path="res://scenes/paddle.tscn" id="1_sscwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u7db"]
 size = Vector2(1152, 8)
@@ -43,3 +45,9 @@ mesh = SubResource("QuadMesh_tvbf6")
 position = Vector2(576, 324)
 scale = Vector2(8, 648)
 mesh = SubResource("QuadMesh_tvbf6")
+
+[node name="PaddleLeft" parent="." instance=ExtResource("1_sscwh")]
+position = Vector2(7.5, 58)
+
+[node name="PaddleRight" parent="." instance=ExtResource("1_sscwh")]
+position = Vector2(1145, 58)
