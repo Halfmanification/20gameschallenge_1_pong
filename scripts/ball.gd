@@ -1,10 +1,14 @@
 extends CharacterBody2D
+class_name Ball
 
 @export var initial_speed : float = 400
 @export var initial_angle : float = PI/4
+var initial_position : Vector2
 
 func _ready():
-	velocity = Vector2(cos(initial_angle), sin(initial_angle)) * initial_speed
+	GameSignals.goal_scored.connect(_on_goal_scored)
+	initial_position = position
+	_reset_ball()
 	
 func _physics_process(delta) -> void:
 	move_and_slide()
@@ -39,6 +43,13 @@ func _handle_paddle_collision(collision: KinematicCollision2D) -> bool:
 	
 	if collision.get_normal().x == 0:
 		return false
-		
+	
 	velocity.x = -velocity.x
 	return true
+
+func _on_goal_scored(player_side: Enums.PlayerSide) -> void:
+	_reset_ball()
+
+func _reset_ball() -> void:
+	velocity = Vector2(cos(initial_angle), sin(initial_angle)) * initial_speed
+	position = initial_position
