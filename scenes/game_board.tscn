@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cenunx0xej4uh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u7db"]
+size = Vector2(1152, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1fra"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tvbf6"]
+material = SubResource("StandardMaterial3D_k1fra")
+
+[node name="GameBoard" type="Node2D"]
+
+[node name="Court" type="Node2D" parent="."]
+
+[node name="Wall" type="Node2D" parent="Court"]
+
+[node name="TopWall" type="StaticBody2D" parent="Court/Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Court/Wall/TopWall"]
+position = Vector2(576, 4)
+shape = SubResource("RectangleShape2D_7u7db")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Court/Wall/TopWall"]
+position = Vector2(576, 4)
+scale = Vector2(1152, 8)
+mesh = SubResource("QuadMesh_tvbf6")
+
+[node name="BottomWall" type="StaticBody2D" parent="Court/Wall"]
+position = Vector2(0, 640)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Court/Wall/BottomWall"]
+position = Vector2(576, 4)
+shape = SubResource("RectangleShape2D_7u7db")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Court/Wall/BottomWall"]
+position = Vector2(576, 4)
+scale = Vector2(1152, 8)
+mesh = SubResource("QuadMesh_tvbf6")
+
+[node name="DivisionLine" type="Node2D" parent="Court"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Court/DivisionLine"]
+position = Vector2(576, 324)
+scale = Vector2(8, 648)
+mesh = SubResource("QuadMesh_tvbf6")
