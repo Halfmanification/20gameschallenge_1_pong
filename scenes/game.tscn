@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://v853j3dbllq1"]
+
+[ext_resource type="PackedScene" uid="uid://cenunx0xej4uh" path="res://scenes/game_board.tscn" id="1_yor4v"]
+[ext_resource type="Script" path="res://scenes/in_game_ui.gd" id="2_np15r"]
+[ext_resource type="LabelSettings" uid="uid://b6bbr65a2ese1" path="res://resources/score_label_settings.tres" id="3_tgcdb"]
+
+[node name="Game" type="Node2D"]
+
+[node name="GameBoard" parent="." instance=ExtResource("1_yor4v")]
+
+[node name="InGameUI" type="CanvasLayer" parent="."]
+script = ExtResource("2_np15r")
+
+[node name="LabelContainer" type="HBoxContainer" parent="InGameUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 60.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelLeft" type="Label" parent="InGameUI/LabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "4"
+label_settings = ExtResource("3_tgcdb")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LabelRight" type="Label" parent="InGameUI/LabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "10"
+label_settings = ExtResource("3_tgcdb")
+vertical_alignment = 1
