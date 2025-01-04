@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
 @export var speed : int = 200
-@export var controller_scheme : Enums.ControllerScheme = Enums.ControllerScheme.MOUSE
 @export var vertical_edge_distance : float
+@export var player_side : Enums.PlayerSide
+
+@export_category("Player controls")
+@export var controller_scheme : Enums.ControllerScheme = Enums.ControllerScheme.KEYBOARD
+@export var up : Key = KEY_W
+@export var down : Key = KEY_S
 
 @onready var mesh_instance_2d : MeshInstance2D = %MeshInstance2D
 
@@ -20,13 +25,8 @@ func _ready():
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
-	
 	_handle_input()
 	move_and_slide()
-	
-	# Fix the times when the ball pushes on the paddles a bit
-	if initial_x_position != position.x:
-		position = Vector2(initial_x_position, position.y)
 
 func _handle_input() -> void:
 	match controller_scheme:
@@ -42,7 +42,11 @@ func _handle_mouse_inputs() -> void:
 	position = Vector2(position.x, clamp(mouse_position.y, min_y_position, max_y_position))
 
 func _handle_keyboard_and_gamepad_inputs() -> void:
-	if Input.is_action_pressed("up"):
+	if Input.is_key_pressed(up):
 		velocity.y = -speed
-	if Input.is_action_pressed("down"):
+	if Input.is_key_pressed(down):
 		velocity.y = speed
+
+func _fix_position_errors() -> void:
+	if initial_x_position != position.x:
+		position = Vector2(initial_x_position, position.y)
