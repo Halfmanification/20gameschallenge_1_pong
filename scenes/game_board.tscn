@@ -60,9 +60,9 @@ position = Vector2(7.5, 58)
 
 [node name="PaddleRight" parent="." instance=ExtResource("1_sscwh")]
 position = Vector2(1145, 58)
-controller_scheme = 0
 up = 4194320
 down = 4194322
+device_id = 1
 
 [node name="Ball" parent="." instance=ExtResource("2_54xa7")]
 position = Vector2(576, 324)
