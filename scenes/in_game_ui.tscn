@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbk777ku2b0oy"]
 
-[ext_resource type="Script" path="res://scenes/in_game_ui.gd" id="1_afiuy"]
+[ext_resource type="Script" path="res://scripts/in_game_ui.gd" id="1_afiuy"]
 [ext_resource type="LabelSettings" uid="uid://b6bbr65a2ese1" path="res://resources/score_label_settings.tres" id="2_5fwhp"]
 
 [node name="InGameUI" type="CanvasLayer"]
