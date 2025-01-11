@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8g4k5mrowugk"]
+
+[ext_resource type="AudioStream" uid="uid://c2flefrim3ly8" path="res://sound/music/tin-roof-8386.mp3" id="1_lcunh"]
+[ext_resource type="Script" path="res://scenes/music_manager.gd" id="2_hxi4p"]
+
+[node name="MusicManager" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_lcunh")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("2_hxi4p")

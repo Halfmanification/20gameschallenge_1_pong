@@ -1,8 +1,6 @@
 extends CanvasLayer
 class_name PauseMenu
 
-signal close
-
 @onready var resume_button = %ResumeButton
 @onready var settings_button = %SettingsButton
 @onready var quit_button = %QuitButton
@@ -27,4 +25,4 @@ func _on_quit_button_pressed():
 	_close()
 
 func _close():
-	close.emit(self)
+	GameSignals.close_pause_menu.emit(self)
