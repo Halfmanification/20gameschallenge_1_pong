@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://oqro2b4n0ql0"]
+[gd_scene load_steps=2 format=3 uid="uid://dwdyivopg6nmd"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_dq1rh"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_rfpbc"]
 
-[node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_dq1rh")
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_rfpbc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_right = 1.00028
+anchor_bottom = 1.00027
+offset_right = -0.319946
+offset_bottom = -0.176025
+color = Color(0, 0, 0, 0.588235)
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -18,10 +28,10 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "START"
+text = "RESUME"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
