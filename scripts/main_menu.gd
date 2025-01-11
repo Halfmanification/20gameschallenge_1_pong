@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var start_button = %StartButton
 @onready var settings_button = %SettingsButton
