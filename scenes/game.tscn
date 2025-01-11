@@ -1,12 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://v853j3dbllq1"]
+[gd_scene load_steps=8 format=3 uid="uid://v853j3dbllq1"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_xc1sd"]
 [ext_resource type="PackedScene" uid="uid://cenunx0xej4uh" path="res://scenes/game_board.tscn" id="1_yor4v"]
 [ext_resource type="PackedScene" uid="uid://dbk777ku2b0oy" path="res://scenes/in_game_ui.tscn" id="2_qgg6w"]
+[ext_resource type="PackedScene" uid="uid://dpsk0nl5koyb0" path="res://scenes/paddle.tscn" id="4_hwsfd"]
+[ext_resource type="PackedScene" uid="uid://b4y56mugb0pp3" path="res://scenes/ball.tscn" id="5_xexb7"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="6_gvpwx"]
+[ext_resource type="Script" path="res://scripts/ai_opponent.gd" id="7_j4wtv"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xc1sd")
 
 [node name="GameBoard" parent="." instance=ExtResource("1_yor4v")]
 
+[node name="PaddleLeft" parent="GameBoard" instance=ExtResource("4_hwsfd")]
+position = Vector2(7.5, 58)
+
+[node name="PaddleRight" parent="GameBoard" instance=ExtResource("4_hwsfd")]
+position = Vector2(1145, 58)
+player_side = 1
+
+[node name="Ball" parent="GameBoard" instance=ExtResource("5_xexb7")]
+position = Vector2(576, 324)
+
 [node name="InGameUI" parent="." instance=ExtResource("2_qgg6w")]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="RightPlayer" type="Node" parent="Players" node_paths=PackedStringArray("paddle")]
+script = ExtResource("6_gvpwx")
+paddle = NodePath("../../GameBoard/PaddleRight")
+controller_scheme = 0
+
+[node name="LeftPlayer" type="Node" parent="Players"]
+
+[node name="AIOpponent" type="Node" parent="Players" node_paths=PackedStringArray("paddle", "ball")]
+script = ExtResource("7_j4wtv")
+paddle = NodePath("../../GameBoard/PaddleLeft")
+ball = NodePath("../../GameBoard/Ball")
+precision = 0.8
