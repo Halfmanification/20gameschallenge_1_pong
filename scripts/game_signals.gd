@@ -9,4 +9,4 @@ signal open_main_menu
 signal close_main_menu
 
 signal open_pause_menu
-signal close_pause_menu
+signal close_pause_menu(menu: PauseMenu)

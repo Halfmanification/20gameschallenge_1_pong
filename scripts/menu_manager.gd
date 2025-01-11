@@ -6,6 +6,7 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 func _ready():
 	GameSignals.open_main_menu.connect(_on_open_main_menu)
 	GameSignals.open_pause_menu.connect(_on_open_pause_menu)
+	GameSignals.close_pause_menu.connect(_on_close_pause_menu)
 
 #region Main Menu
 func _on_open_main_menu():
@@ -17,13 +18,12 @@ func _on_open_main_menu():
 
 #region Pause Menu
 func _on_open_pause_menu():
-	var pause_menu = PAUSE_MENU.instantiate() as PauseMenu
-	pause_menu.close.connect(_on_pause_menu_close)
+	var pause_menu = PAUSE_MENU.instantiate()
 	
 	get_tree().current_scene.call_deferred("add_child", pause_menu)
 	get_tree().paused = true
 
-func _on_pause_menu_close(pause_menu: PauseMenu):
+func _on_close_pause_menu(pause_menu: PauseMenu):
 	get_tree().paused = false
 	pause_menu.queue_free()
 #endregion

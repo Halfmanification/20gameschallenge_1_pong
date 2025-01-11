@@ -22,6 +22,7 @@ Enums="*res://scripts/enums.gd"
 GameSignals="*res://scripts/game_signals.gd"
 GameState="*res://scripts/game_state.gd"
 MenuManager="*res://scripts/menu_manager.gd"
+MusicManager="*res://scenes/music_manager.tscn"
 
 [display]
 
