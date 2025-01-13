@@ -3,6 +3,7 @@ class_name Ball
 
 @export var initial_speed : float = 400
 @export var initial_angle : float = PI/4
+@export var max_angle : float = PI/4
 
 @onready var audio_stream_player : AudioStreamPlayer2D = %AudioStreamPlayer2D
 
@@ -21,7 +22,7 @@ func _process(delta):
 
 func _physics_process(delta) -> void:
 	move_and_slide()
-	_handle_collision()
+	await _handle_collision()
 
 func _handle_collision() -> void:
 	var has_bounced_of_wall := false
@@ -34,7 +35,7 @@ func _handle_collision() -> void:
 			has_bounced_of_wall = _handle_wall_collision(collision)
 		
 		if has_bounced_of_paddle == false:
-			has_bounced_of_paddle = _handle_paddle_collision(collision)
+			has_bounced_of_paddle = await _handle_paddle_collision(collision)
 
 func _handle_wall_collision(collision: KinematicCollision2D) -> bool:
 	if not collision.get_collider() is StaticBody2D:
@@ -56,10 +57,18 @@ func _handle_paddle_collision(collision: KinematicCollision2D) -> bool:
 	if collision.get_normal().x == 0:
 		return false
 	
+	var paddle = instance_from_id(collision.get_collider().get_instance_id()) as Paddle
+	var local_point : Vector2 = paddle.to_local(collision.get_position())
+	
+	var angle_modifier = local_point.y/(paddle.dimensions.y/2)
+	
+	velocity.y = sin(max_angle * angle_modifier) * initial_speed
 	velocity.x = -velocity.x
+	
 	audio_stream_player.volume_db = randf_range(0.9, 1.4) * velocity.normalized().length()
 	audio_stream_player.pitch_scale = randf_range(0.98, 1.02)
 	_play_sound = true
+	
 	return true
 
 func _on_goal_scored(player_side: Enums.PlayerSide) -> void:
