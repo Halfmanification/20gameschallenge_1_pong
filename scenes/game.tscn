@@ -22,6 +22,7 @@ player_side = 1
 
 [node name="Ball" parent="GameBoard" instance=ExtResource("5_xexb7")]
 position = Vector2(576, 324)
+initial_speed = 900.0
 
 [node name="InGameUI" parent="." instance=ExtResource("2_qgg6w")]
 
@@ -38,4 +39,4 @@ controller_scheme = 0
 script = ExtResource("7_j4wtv")
 paddle = NodePath("../../GameBoard/PaddleLeft")
 ball = NodePath("../../GameBoard/Ball")
-speed = 50.0
+precision = 0.641
