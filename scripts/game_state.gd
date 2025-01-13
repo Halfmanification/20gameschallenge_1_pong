@@ -2,18 +2,24 @@ extends Node
 
 @export var win_score : int = 3
 
+const GAME = preload("res://scenes/game.tscn")
+
 var _player_data := {
 	Enums.PlayerSide.LEFT: {
-		"score": 0
+		"score": 0,
+		"name": "Left"
 	},
 	Enums.PlayerSide.RIGHT: {
-		"score": 0
+		"score": 0,
+		"name": "Right"
 	}
 }
 
+var _winner : Enums.PlayerSide
+
 func _ready():
+	GameSignals.new_game_started.connect(_on_new_game_started)
 	GameSignals.goal_scored.connect(_on_goal_scored)
-	GameSignals.game_won.connect(_on_game_won)
 
 func _on_goal_scored(goal_side: Enums.PlayerSide) -> void:
 	var scoring_player_side := _get_opponent_side(goal_side)
@@ -23,7 +29,8 @@ func _on_goal_scored(goal_side: Enums.PlayerSide) -> void:
 	GameSignals.score_updated.emit(scoring_player_side, scoring_player.score)
 	
 	if scoring_player.score >= win_score:
-		get_tree().call_deferred("quit")
+		GameSignals.game_won.emit()
+		_winner = scoring_player_side
 
 func _get_key(player_side: Enums.PlayerSide) -> String:
 	return Enums.PlayerSide.keys()[player_side]
@@ -33,11 +40,10 @@ func _get_opponent_side(player_side: Enums.PlayerSide) -> Enums.PlayerSide:
 		return Enums.PlayerSide.RIGHT
 	return Enums.PlayerSide.LEFT
 
-func _check_win_condition() -> void:
-	for player_side in _player_data.keys():
-		var player = _player_data[player_side]
-		if player.score >= win_score:
-			GameSignals.game_won.emit(_get_key(player_side))
+func get_winner():
+	return _player_data[_winner]
 
-func _on_game_won(winning_player_side: Enums.PlayerSide) -> void:
-	get_tree().call_deferred("quit")
+func _on_new_game_started():
+	for key in _player_data:
+		_player_data[key].score = 0
+	get_tree().change_scene_to_packed(GAME)

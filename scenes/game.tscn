@@ -38,4 +38,4 @@ controller_scheme = 0
 script = ExtResource("7_j4wtv")
 paddle = NodePath("../../GameBoard/PaddleLeft")
 ball = NodePath("../../GameBoard/Ball")
-precision = 0.8
+speed = 50.0
