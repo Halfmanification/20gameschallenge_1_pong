@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ygksj8k6d50"]
+
+[ext_resource type="Script" path="res://scripts/win_menu.gd" id="1_n255o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fg8h7"]
+font_size = 32
+
+[node name="WinMenu" type="CanvasLayer"]
+script = ExtResource("1_n255o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Right player wins!"
+label_settings = SubResource("LabelSettings_fg8h7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
+
+[node name="PlayAgainButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PLAY AGAIN"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "QUIT"
