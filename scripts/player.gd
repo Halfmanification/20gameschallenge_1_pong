@@ -1,5 +1,5 @@
 extends Node
-class_name PLayer
+class_name Player
 
 @export var paddle : Paddle
 
