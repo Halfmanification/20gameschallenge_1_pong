@@ -13,3 +13,5 @@ signal close_pause_menu(menu: PauseMenu)
 
 # ?
 signal new_game_started
+signal player_mode_selected(player_mode: Enums.PlayerMode)
+signal player_selected(player_data)
