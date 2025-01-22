@@ -7,7 +7,9 @@ extends Node2D
 
 func _ready():
 	var player_1 = Player.new()
-	player_1.controller_scheme = Enums.ControllerScheme.MOUSE
+	player_1.controller_scheme = Enums.ControllerScheme.KEYBOARD
+	player_1.up = KEY_UP
+	player_1.down = KEY_DOWN
 	player_1.paddle = paddle_right
 	add_child(player_1)
 	player_1.name = "Player1"
@@ -20,6 +22,8 @@ func _ready():
 	elif GameState.player_mode == Enums.PlayerMode.PLAYERS_2:
 		player_2 = Player.new()
 		player_2.controller_scheme = Enums.ControllerScheme.KEYBOARD
+		player_2.up = KEY_W
+		player_2.down = KEY_S
 		player_2.name = "Player2"
 	
 	player_2.paddle = paddle_left
